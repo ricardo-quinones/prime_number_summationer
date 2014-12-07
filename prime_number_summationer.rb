@@ -47,7 +47,7 @@ class PrimeNumberSummationer
   end
 
   def can_break_loop?(nth_prime_number)
-    # Will include square of first number in array
+    # Will include square of first number in odd_numbers array
     self.index_to_take = odd_numbers.find_index { |num| num > odd_numbers.first ** 2 } + 1
     self.primes_left = nth_prime_number - prime_number_count
 
