@@ -18,7 +18,6 @@ class PrimeNumberSummationer
     max = nth_prime_number * 11
     odd_numbers = (3..max).step(2).to_a
     prime_number_count = 1
-    prime_numbers = []
 
     loop do
       # Will include square of first number in array
@@ -35,7 +34,6 @@ class PrimeNumberSummationer
 
       new_prime = odd_numbers.shift
       prime_number_count += 1
-      prime_numbers << new_prime
       self.prime_number_sum += new_prime
 
       odd_numbers -= ((new_prime ** 2)..max).step(new_prime).to_a
