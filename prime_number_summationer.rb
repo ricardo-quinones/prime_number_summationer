@@ -1,4 +1,5 @@
 require 'benchmark'
+require 'pry'
 
 class PrimeNumberSummationer
   attr_accessor :prime_number_sum, :prime_number_count, :max_odd_number, :odd_numbers, :index_to_take, :primes_left
@@ -19,9 +20,9 @@ class PrimeNumberSummationer
 
     loop do
       if can_break_loop?(nth_prime_number)
-        new_primes = odd_numbers[0...primes_left]
         # Delete the square of the first prime number in the array if present
-        new_primes.delete(new_primes.first ** 2)
+        odd_numbers.delete(odd_numbers.first ** 2)
+        new_primes = odd_numbers.take(primes_left)
         self.prime_number_sum += new_primes.inject(:+)
         break
       end
@@ -30,7 +31,7 @@ class PrimeNumberSummationer
       self.prime_number_count += 1
       self.prime_number_sum += new_prime
 
-      self.odd_numbers -= ((new_prime ** 2)..max_odd_number).step(new_prime).to_a
+      self.odd_numbers -= ((new_prime ** 2)..max_odd_number).step(new_prime * 2).to_a
     end
   end
 
@@ -48,9 +49,10 @@ class PrimeNumberSummationer
 
   def can_break_loop?(nth_prime_number)
     # Will include square of first number in odd_numbers array
-    self.index_to_take = odd_numbers.find_index { |num| num > odd_numbers.first ** 2 } + 1
     self.primes_left = nth_prime_number - prime_number_count
+    return true if odd_numbers.last < odd_numbers.first ** 2
 
+    self.index_to_take = odd_numbers.find_index { |num| num > odd_numbers.first ** 2 } + 1
     return index_to_take - 1 >= primes_left
   end
 end
