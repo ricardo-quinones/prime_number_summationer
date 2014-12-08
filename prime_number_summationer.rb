@@ -1,5 +1,4 @@
 require 'benchmark'
-require 'pry'
 
 class PrimeNumberSummationer
   attr_accessor :prime_number_sum, :prime_number_count, :max_odd_number, :odd_numbers, :index_to_take, :primes_left
