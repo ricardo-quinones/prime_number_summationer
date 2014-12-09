@@ -8,7 +8,7 @@ loop do
 
   if number =~ /\d+/
     number = number.to_i
-    if number.between?(0, 50001)
+    if number.between?(0, 1000001)
       puts prime_number_summationer.calculate(number)
     else
       puts "Sorry. That is out of the allowable range. Please input a number less than or equal to 50,000."
