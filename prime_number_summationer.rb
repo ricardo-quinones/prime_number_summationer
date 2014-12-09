@@ -32,11 +32,11 @@ class PrimeNumberSummationer
   def initialize_calculator(nth_prime_number)
     self.prime_number_count = 0
     self.prime_number_sum = 0
-    self.upper_bound = calculate_upper_bound(nth_prime_number)
+    self.upper_bound = approximate_upper_bound(nth_prime_number)
     self.odd_numbers = (3..upper_bound).step(2).to_a
   end
 
-  def calculate_upper_bound(nth_prime_number)
+  def approximate_upper_bound(nth_prime_number)
     return 14 if nth_prime_number < 6
     (1.05 * nth_prime_number * (Math.log(nth_prime_number) + Math.log(Math.log(nth_prime_number)))).ceil
   end
